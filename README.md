@@ -1,5 +1,9 @@
 # driverfury_blog
 
+## Description
+
+This is my blog.
+
 ## Project setup
 ```
 npm install

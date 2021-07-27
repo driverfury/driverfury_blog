@@ -2,6 +2,8 @@
 node_modules
 /dist
 
+# Package file
+package-lock.json
 
 # local env files
 .env.local
@@ -21,3 +23,8 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Vim's swap files
+*.swp
+*.swo
+*~

@@ -1,18 +1,41 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="logo-container">
+        <img class="logo" alt="Logo" src="../assets/img/logo.jpg">
+    </div>
+    <PostPreview :key="post.id" v-for="post in $store.state.posts" :post="post" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import PostPreview from '@/components/PostPreview.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    PostPreview
+  },
+  created () {
+    this.$store.dispatch('fetchPosts')
   }
 }
 </script>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.logo-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  margin-bottom: 2em;
+}
+
+.logo {
+  width: 20%;
+}
+</style>

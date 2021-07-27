@@ -27,13 +27,22 @@ export default {
   margin-right: auto;
   width: 70%;
 }
+
+@media only screen and (max-width: 600px) {
+  .post-preview {
+    width: 90%;
+  }
+}
+
 .post-image {
   max-width: 100%;
   max-height: 20em;
 }
+
 .post-title {
   color: #666666;
 }
+
 .post-date {
   color: #888888;
 }

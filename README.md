@@ -1,4 +1,4 @@
-# driverfury_blog
+# driverfury's blog
 
 ## Description
 
@@ -7,6 +7,7 @@ This is my blog.
 ## Project setup
 ```
 npm install
+composer install
 ```
 
 ### Compiles and hot-reloads for development
@@ -18,11 +19,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

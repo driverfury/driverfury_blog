@@ -2,10 +2,23 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <a href="https://github.com/driverfury">GitHub</a>
+    <a href="https://github.com/driverfury" target="_blank">GitHub</a> |
+    <router-link to="/create-post" v-if="$store.state.loggedIn && $store.state.user.isAdmin">Create New Post</router-link>
   </div>
   <router-view/>
+  <Footer />
 </template>
+
+<script>
+import Footer from '@/components/Footer.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Footer
+  }
+}
+</script>
 
 <style>
 #app {
@@ -26,6 +39,6 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: darkgoldenrod;
 }
 </style>

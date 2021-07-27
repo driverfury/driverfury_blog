@@ -40,7 +40,15 @@ body {
   margin-bottom: 2em;
 }
 
-.logo {
-  width: 20%;
+@media only screen and (max-width: 599px) {
+  .logo {
+    width: 20%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .logo {
+    max-height: 10em;
+  }
 }
 </style>

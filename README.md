@@ -46,3 +46,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [QSA,L]
 ```
 
+### What about the backend?
+
+The backend is written in PHP (you can find it in ```public/api/``` folder) and it uses [Slim Framework v4](https://www.slimframework.com/).
+
+For now, we use fake APIs but I am going to develop a real backend (with authentication system, post creation and so on). Stay tuned.

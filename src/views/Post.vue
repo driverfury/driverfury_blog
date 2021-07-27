@@ -1,10 +1,10 @@
 <template>
   <div class="post">
-    <h1>{{ $store.state.post.title }}</h1>
+    <h1>{{ post.title }}</h1>
     <div>
-      <img class="post-image" :src="$store.state.post.image" />
+      <img class="post-image" :src="post.image" />
     </div>
-    <div class="post-body" v-html="$store.state.post.body">
+    <div class="post-body" v-html="post.body">
     </div>
   </div>
 </template>
@@ -14,24 +14,13 @@ export default {
   name: 'Post',
   data () {
     return {
-      post_id: 0
+      post_id: 0,
+      post: {}
     }
   },
-  created () {
-    this.$store.dispatch('getPost', 1)
-    /*
-    this.post_id = parseInt(this.$route.params.id)
-    for (let i = 0; i < this.$store.state.posts.length; ++i) {
-      console.log(this.$store.state.posts[i].title)
-      const post = this.$store.state.posts[i]
-      if (post.id === this.post_id) {
-        this.post = post
-        break
-      }
-    }
-    console.log(this.post)
-    */
-    /* this.$store.state. */
+  async created () {
+    this.post_id = this.$route.params.id
+    this.post = await this.$store.dispatch('getPost', this.post_id)
   }
 }
 </script>

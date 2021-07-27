@@ -3,7 +3,7 @@
     <div class="logo-container">
         <img class="logo" alt="Logo" src="../assets/img/logo.jpg">
     </div>
-    <PostPreview :key="post.id" v-for="post in $store.state.posts" :post="post" />
+    <PostPreview :key="post.id" v-for="post in posts" :post="post" />
   </div>
 </template>
 
@@ -15,8 +15,13 @@ export default {
   components: {
     PostPreview
   },
-  created () {
-    this.$store.dispatch('fetchPosts')
+  data () {
+    return {
+      posts: []
+    }
+  },
+  async created () {
+    this.posts = await this.$store.dispatch('fetchPosts')
   }
 }
 </script>

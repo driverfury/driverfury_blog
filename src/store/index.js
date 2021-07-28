@@ -63,6 +63,14 @@ export default createStore({
       const response = await http.get('/posts')
       state.posts = response.data.data
       return response.data.data
+    },
+    async createPost ({ commit, state }, params) {
+      try {
+        await http.post('/posts', params)
+        return true
+      } catch (error) {
+        return false
+      }
     }
   },
   modules: {

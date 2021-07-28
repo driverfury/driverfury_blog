@@ -32,7 +32,7 @@ pnpm-debug.log*
 *~
 
 # Database
-.sqlite
+/src/server/db.sqlite
 
 # PHP Fake API
 /public/api

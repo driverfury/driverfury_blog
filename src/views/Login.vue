@@ -28,18 +28,14 @@ export default {
   },
   methods: {
     async login () {
-      console.log('logging in...')
       const loggedIn = await this.$store.dispatch('login', {
         username: this.username,
         password: this.password
       })
-      console.log('loggedIn', loggedIn)
       if (loggedIn) {
-        console.log('logged in')
         await this.$store.dispatch('automaticLogin')
         this.$router.push({ path: '/' })
       } else {
-        console.log('error')
         this.error = 'Invalid credentials'
       }
     }

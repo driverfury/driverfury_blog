@@ -44,7 +44,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
         description text, 
         body longtext, 
         image text, 
-        date date default getdate
+        date date default CURRENT_TIMESTAMP
       );`,
       (err) => {
         if (!err) {

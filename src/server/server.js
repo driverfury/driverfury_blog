@@ -50,7 +50,6 @@ app.post('/api/login', (req, res, next) => {
       !req.body.hasOwnProperty('username')) {
     console.log('[DEBUG] Invalid credentials')
     res.status(400).json({'message': 'Invalid credentials'})
-    res.send()
     return
   }
   var md5 = require('md5')
@@ -74,19 +73,16 @@ app.post('/api/login', (req, res, next) => {
               token: token,
               isAdmin: (rows[0].admin) ? true : false
             })
-            res.send()
             return
           } else {
             console.log('[DEBUG] Cannot create API token')
             res.status(400).json({'message': 'Cannot create API token'})
-            res.send()
             return
           }
         })
       } else {
         console.log('[DEBUG] Invalid credentials')
         res.status(400).json({'message': 'Invalid credentials'})
-        res.send()
         return
       }
     }
@@ -97,7 +93,6 @@ app.post('/api/check-token', (req, res, next) => {
   if (!req.hasOwnProperty('body') ||
       !req.body.hasOwnProperty('token')) {
     res.status(400).json({'message': 'Invalid token'})
-    res.send()
     return
   }
   var token = req.body.token
@@ -106,12 +101,10 @@ app.post('/api/check-token', (req, res, next) => {
   db.all(sql, params, (err, rows) => {
     if (err) {
       res.status(400).json({'message': 'Invalid token'})
-      res.send()
       return
     }
     if(rows.length == 0) {
       res.status(400).json({'message': 'Invalid token'})
-      res.send()
       return
     }
     res.status(200).json({
@@ -121,7 +114,6 @@ app.post('/api/check-token', (req, res, next) => {
         isAdmin: (rows[0].admin) ? true : false
       }
     })
-    res.send()
     return
   })
 })
@@ -141,6 +133,58 @@ app.get('/api/posts', (req, res, next) => {
     res.status(200).json({
       'data': rows
     })
+    return
+  })
+})
+
+app.get('/api/posts/:id', (req, res, next) => {
+  if (!req.hasOwnProperty('params') ||
+      !req.params.hasOwnProperty('id')) {
+    res.status(400).json({'message': 'Invalid post'})
+    return
+  }
+  var id = req.params.id
+  var sql = 'SELECT * from posts WHERE id = ?'
+  var params = [id]
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({'message':err.message})
+      return
+    }
+    if (rows.length == 0) {
+      res.status(400).json({'message': 'Invalid post'})
+      return
+    }
+    res.status(200).json({
+      'data': rows[0]
+    })
+    return
+  })
+})
+
+app.post('/api/posts', (req, res, next) => {
+  if (!req.hasOwnProperty('body') ||
+      !req.body.hasOwnProperty('title') ||
+      !req.body.hasOwnProperty('description') ||
+      !req.body.hasOwnProperty('image') ||
+      !req.body.hasOwnProperty('body')) {
+    res.status(400).json({'message': 'Invalid post'})
+    return
+  }
+
+  var title = req.body.title
+  var description = req.body.description
+  var image = req.body.image
+  var body = req.body.body
+  var insertQuery = 'INSERT INTO posts (title, description, image, body) VALUES (?, ?, ?, ?);';
+  db.run(insertQuery, [title, description, image, body], (err) => {
+    if (err) {
+      res.status(400).json({'message': 'Invalid post'})
+      return
+    } else {
+      res.status(200).json({'message': 'Post created'})
+      return
+    }
   })
 })
 

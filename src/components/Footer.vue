@@ -17,6 +17,7 @@ export default {
 .footer {
   width: 100%;
   background-color: #000000;
+  height: 5em;
   min-height: 5em;
   line-height: 5em;
   text-align: center;

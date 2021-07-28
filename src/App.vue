@@ -1,11 +1,21 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <a href="https://github.com/driverfury" target="_blank">GitHub</a> |
-    <router-link to="/create-post" v-if="$store.state.loggedIn && $store.state.user.isAdmin">Create New Post</router-link>
+  <div class="app-content">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <a href="https://github.com/driverfury" target="_blank">GitHub</a>
+      <span v-if="$store.state.userLoggedIn">
+        | <a href="" @click="logout">Logout</a>
+      </span>
+      <span v-else>
+        | <router-link to="/login">Login</router-link>
+      </span>
+      <span v-if="$store.state.userLoggedIn && $store.state.user.isAdmin">
+        | <router-link to="/create-post">Create New Post</router-link>
+      </span>
+    </div>
+    <router-view/>
   </div>
-  <router-view/>
   <Footer />
 </template>
 
@@ -16,6 +26,21 @@ export default {
   name: 'App',
   components: {
     Footer
+  },
+  methods: {
+    async logout () {
+      await this.$store.dispatch('logout')
+      this.$router.push({ path: '/' })
+    }
+  },
+  async created () {
+    const loggedIn = await this.$store.dispatch('automaticLogin')
+    if (!loggedIn) {
+      this.$router.push({ path: '/login' })
+    }
+
+    console.log(this.$store.state.userLoggedIn)
+    console.log(this.$store.state.user)
   }
 }
 </script>
@@ -40,5 +65,9 @@ export default {
 
 #nav a.router-link-exact-active {
   color: darkgoldenrod;
+}
+
+.app-content {
+  min-height: calc(100vh - 5em);
 }
 </style>

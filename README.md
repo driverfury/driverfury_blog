@@ -7,47 +7,53 @@ This is my blog. [Live demo](http://driverfury.altervista.org).
 ## Project setup
 ```
 npm install
-composer install
 ```
 
-### Compiles and hot-reloads for development
+### Backend
+The backend is written in JS (you can find it in ```src/server/``` folder) and it uses [expressjs](https://expressjs.com/) and [sqlite3](https://www.npmjs.com/package/sqlite3).
+
+First thing, you need to start the server with the following command:
+
+```
+npm run startServer
+```
+
+By default it starts a listening server on port ```8000```.
+
+If you want to change the port just edit line 9 of ```src/server/server.js``` file.
+Then go to ```src/store/index.js``` and edit line 5.
+
+When the server is started it will automatically create an SQLite database and all the
+tables needed. Plus, it will add some dummy content.
+
+### Frontend
+The frontend is written in HTML, CSS, JS using [VueJS v3](https://vuejs.org/) framework.
+
+You can serve it for testing or compile and minify it for production.
+
+To serve it, launch the following command:
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+To compile it for production, instead, launch the following command:
 ```
 npm run build
 ```
 
-And host ```dist``` wherever you want.
+The ```dist``` folder will be created and you can host it wherever you want.
 
-### Setup .htaccess
-You need this .htaccess file in the ```public``` folder
+### Quickstart
 
+Once you started the server (backend) and served/built the frontend, you can check the blog
+by visiting the web address on which the frontend is hosted, when you serve the address usually is
+```http://localhost:8080```.
+
+You can read posts or you can create new ones.
+
+To create a post you need to log in ad administrator. Go to ```/login``` page and type
+the default credentials for the admin:
 ```
-RewriteEngine On
-RewriteBase /
-
-RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
-RewriteRule ^ %1 [L,NE,R=302]
-
-RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
+username: admin
+password: admin123
 ```
-
-And this .htaccess in the ```public/api``` folder in order to make backend work:
-
-```
-RewriteEngine On
-RewriteBase /api/
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [QSA,L]
-```
-
-### What about the backend?
-
-The backend is written in PHP (you can find it in ```public/api/``` folder) and it uses [Slim Framework v4](https://www.slimframework.com/).
-
-For now, we use fake APIs but I am going to develop a real backend (with authentication system, post creation and so on). Stay tuned.

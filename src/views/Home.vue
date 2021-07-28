@@ -36,13 +36,15 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
   background-color: #000000;
   margin-bottom: 2em;
 }
 
 @media only screen and (max-width: 599px) {
   .logo {
-    width: 20%;
+    width: 50%;
   }
 }
 

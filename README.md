@@ -42,7 +42,7 @@ To compile it for production, instead, launch the following command:
 npm run build
 ```
 
-The ```dist``` folder will be created and you can host it wherever you want.
+When you build for production the ```dist``` folder will be created and you can host it wherever you want.
 
 ### Quickstart
 

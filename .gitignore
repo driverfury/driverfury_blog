@@ -33,3 +33,6 @@ pnpm-debug.log*
 
 # Database
 .sqlite
+
+# PHP Fake API
+/public/api

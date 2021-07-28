@@ -58,15 +58,20 @@ the default credentials for the admin:
 username: admin
 password: admin123
 ```
-
+<br>
 ![Login](/screenshots/001.png?raw=true "Login")
 
+<br>
 Then you need to click on "Create a new post" a start writing:
+<br>
 ![New post](/screenshots/002.png?raw=true "New post")
 
+<br>
 When you have finished, click on "Create Post". You will be redirected to the home page
 where you can see the preview of your newly created post.
+<br>
 ![New post preview](/screenshots/003.png?raw=true "New post preview")
-
+<br>
 Finally, clicking on it will show the full body of the post:
+<br>
 ![New post full](/screenshots/004.png?raw=true "New post full")

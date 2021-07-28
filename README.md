@@ -2,7 +2,8 @@
 
 ## Description
 
-This is my blog. [Live demo](http://driverfury.altervista.org).
+A simple blog written using VueJS and ExpressJS. You can access a [live demo](http://driverfury.altervista.org)
+hosted on my website (it uses fake API since it is only for demonstration purposes).
 
 ## Project setup
 ```
